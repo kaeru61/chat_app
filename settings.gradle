@@ -1,0 +1,8 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()  // Gradle Plugin Portalを指定
+        mavenCentral()        // Maven Centralも追加
+    }
+}
+
+rootProject.name = 'chatapp'

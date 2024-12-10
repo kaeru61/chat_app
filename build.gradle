@@ -1,0 +1,63 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.4.0'
+	id 'io.spring.dependency-management' version '1.1.6'
+	id 'nu.studer.jooq' version '6.0' // JOOQのコード生成プラグイン
+}
+
+group = 'com.realtimechat'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(23)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	implementation 'org.jooq:jooq:3.18.5'  // JOOQのライブラリ
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'  // Spring BootとJPA
+    runtimeOnly 'org.postgresql:postgresql:42.6.0'  // 使用するDBに合わせて
+    jooqGenerator 'org.postgresql:postgresql:42.6.0'  // JOOQのコード生成に必要なDBドライバ
+    testRuntimeOnly 'com.h2database:h2'
+    implementation 'org.postgresql:postgresql:42.6.0'  // PostgreSQLのJDBCドライバ
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+jooq {
+    version.set('3.18.5')  // JOOQのバージョン
+    configurations {
+        create("main") {
+            generateSchemaSourceOnCompilation.set(false)
+            generationTool {
+                jdbc {
+                    driver = 'org.postgresql.Driver'
+                    url = 'jdbc:postgresql://localhost:5430/chatapp' // データベースのURL
+                    user = 'user'  // データベースのユーザー名
+                    password = 'postgres'  // データベースのパスワード
+                }
+                generator {
+                    database {
+                        name = 'org.jooq.meta.postgres.PostgresDatabase'
+                        inputSchema = 'public'  // 使用するスキーマ
+                    }
+                    target {
+                        packageName = 'com.chatapp.jooq'  // 生成されるコードのパッケージ名
+                        directory = 'src/main/java/com/chatapp/jooq'  // 生成されたコードの保存先ディレクトリ
+                    }
+                }
+            }
+        }
+    }
+}

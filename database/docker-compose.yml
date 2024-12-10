@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15  # 使用するPostgreSQLのバージョン
+    container_name: postgres-container
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=chatapp  # データベース名
+    ports:
+      - "5430:5432"  # ホストとコンテナ間のポートをマッピング
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # データ永続化用のボリューム
+      - ../database/init.sql:/docker-entrypoint-initdb.d/init.sql  # 初期化SQLスクリプトをコンテナにコピー
+
+volumes:
+  postgres_data:
+    driver: local

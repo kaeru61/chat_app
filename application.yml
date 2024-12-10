@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5430/chatapp
+    username: user
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  
+server:
+  port: 8090
+  ssl:
+    enabled: false
+    protocol: TLSv1.3  # またはTLSv1.3

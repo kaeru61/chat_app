@@ -5,23 +5,25 @@ import java.util.List;
 import main.java.com.chatapp.internal.domain.UserModel;
 
 public class ChatRoomModel {
-    private number chatID;
+    private int chatID;
     private List<UserModel> users;
     private List<MessageModel> messages;
     private String createdAt;
     private String name;
     private boolean isPrivate;
+    private String password;
 
-    public ChatRoomModel(number chatID, List<UserModel> users, List<MessageModel> messages, String createdAt, String name, boolean isPrivate) {
+    public ChatRoomModel(int chatID, List<UserModel> users, List<MessageModel> messages, String createdAt, String name, boolean isPrivate, String password) {
         this.chatID = chatID;
         this.users = users;
         this.messages = messages;
         this.createdAt = createdAt;
         this.name = name;
         this.isPrivate = isPrivate;
+        this.password = password;
     }
 
-    public void setChatID(number chatID) {
+    public void setChatID(int chatID) {
         this.chatID = chatID;
     }
 
@@ -45,7 +47,11 @@ public class ChatRoomModel {
         this.isPrivate = isPrivate;
     }
 
-    public number getChatID() {
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getChatID() {
         return chatID;
     }
 
@@ -67,5 +73,9 @@ public class ChatRoomModel {
 
     public boolean getIsPrivate() {
         return isPrivate;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }

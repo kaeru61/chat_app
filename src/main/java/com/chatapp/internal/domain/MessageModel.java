@@ -2,21 +2,21 @@ package main.java.com.chatapp.internal.domain;
 
 
 public class MessageModel {
-    private String messageID;
+    private int messageID;
     private String message;
-    private String senderID;
-    private String chatID;
+    private String userID;
+    private int chatRoomID;
     private String createdAt;
 
-    public MessageModel(String messageID, String message, String senderID, String chatID, String createdAt) {
+    public MessageModel(int messageID, String message, String userID, int chatRoomID, String createdAt) {
         this.messageID = messageID;
         this.message = message;
-        this.senderID = senderID;
-        this.chatID = chatID;
+        this.userID = userID;
+        this.chatRoomID = chatRoomID;
         this.createdAt = createdAt;
     }
 
-    public void setMessageID(String messageID) {
+    public void setMessageID(int messageID) {
         this.messageID = messageID;
     }
 
@@ -24,19 +24,19 @@ public class MessageModel {
         this.message = message;
     }
 
-    public void setSenderID(String senderID) {
-        this.senderID = senderID;
+    public void setUserID(String userID) {
+        this.userID = userID;
     }
 
-    public void setChatID(String chatID) {
-        this.chatID = chatID;
+    public void setChatRoomID(int chatRoomID) {
+        this.chatRoomID = chatRoomID;
     }
 
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
 
-    public String getMessageID() {
+    public int getMessageID() {
         return messageID;
     }
 
@@ -44,12 +44,12 @@ public class MessageModel {
         return message;
     }
 
-    public String getSenderID() {
-        return senderID;
+    public String getUserID() {
+        return userID;
     }
 
-    public String getChatID() {
-        return chatID;
+    public int getChatRoomID() {
+        return chatRoomID;
     }
 
     public String getCreatedAt() {

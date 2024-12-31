@@ -1,62 +1,64 @@
 package main.java.com.chatapp.internal.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import main.java.com.chatapp.internal.domain.ChatRoomModel;
+import main.java.com.chatapp.internal.application.ChatRoomApplication;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import main.java.com.chatapp.internal.application.ChatRoomApplication;
-
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @RestController
 @RequestMapping("/chatroom")
 public class ChatRoomController {
-    
     @Autowired
     private ChatRoomApplication chatRoomApplication;
 
     @GetMapping
-    public ResponseEntity<List<ChatRoom>> getAllChatRooms() {
+    public ResponseEntity<List<ChatRoomModel>> getAllChatRooms() {
         return ResponseEntity.ok(chatRoomApplication.getChatRooms());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ChatRoom> getChatRoomById(@PathVariable int id) {
+    public ResponseEntity<ChatRoomModel> getChatRoomById(@PathVariable int id) {
         return ResponseEntity.ok(chatRoomApplication.getChatRoom(id));
     }
 
-    @PostMapping
-    public ResponseEntity<ChatRoom> createChatRoom(@RequestBody ChatRoomRequest req) {
-        if (req.getPrivate() && req.getPassword() == null) {
+    @PostMapping("")
+    public ResponseEntity<ChatRoomModel> createChatRoom(@RequestBody ChatRoomRequest req) {
+        try {
+            ChatRoomModel chatRoom = new ChatRoomModel(0, null, null, 
+                java.time.LocalDateTime.now().toString(), 
+                req.getName(), 
+                req.getPrivate(),
+                req.getPassword()
+            );
+            return ResponseEntity.ok(chatRoomApplication.createChatRoom(chatRoom));
+        } catch (Exception e) {
             return ResponseEntity.badRequest().build();
-        } else if (req.getPrivate() && req.getPassword().isEmpty()) {
-            return ResponseEntity.badRequest().build();
-        } else if (req.getPrivate() && req.getPassword().isBlank()) {
-            return ResponseEntity.badRequest().build();
-        } else if (req.getPrivate() && req.getPassword().length() < 6) {
-            return ResponseEntity.badRequest().build();
-        } else if (req.getPrivate()) {
-            return ResponseEntity.ok(chatRoomApplication.createChatRoom(req.getName(), null, req.getPrivate(), req.getPassword()));
-        } else {
-            return ResponseEntity.ok(chatRoomApplication.createChatRoom(req.getName(), null, req.getPrivate(), null));
         }
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ChatRoom> updateChatRoom(@PathVariable Long id, @RequestBody ChatRoomRequest chatRoom) {
-        chatRoom.setId(id);
-        return ResponseEntity.ok(chatRoomService.update(chatRoom));
+    public ResponseEntity<ChatRoomModel> updateChatRoom(@PathVariable Long id, @RequestBody ChatRoomRequest req) {
+        ChatRoomModel chatRoom = chatRoomApplication.getChatRoom(id.intValue());
+        if (chatRoom == null) {
+            return ResponseEntity.notFound().build();
+        }
+        chatRoom.setName(req.getName());
+        chatRoom.setIsPrivate(req.getPrivate());
+        chatRoomApplication.updateChatRoom(chatRoom);
+        return ResponseEntity.ok(chatRoom);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteChatRoom(@PathVariable Long id) {
-        chatRoomService.deleteById(id);
+        chatRoomApplication.deleteChatRoom(id);
         return ResponseEntity.ok().build();
     }
 }
 
 class ChatRoomRequest {
-    private Long id;
+    private int id;
     private String name;
     private boolean isPrivate;
     private String password;
@@ -64,18 +66,18 @@ class ChatRoomRequest {
     public ChatRoomRequest() {
     }
 
-    public ChatRoomRequest(Long id, String name, boolean isPrivate, String password) {
+    public ChatRoomRequest(int id, String name, boolean isPrivate, String password) {
         this.id = id;
         this.name = name;
         this.isPrivate = isPrivate;
         this.password = password;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

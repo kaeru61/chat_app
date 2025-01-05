@@ -13,7 +13,7 @@ Spring Bootの設定ファイルです。データベース接続やその他の
 - 言語/フレームワーク　Java/Spring Boot
 - アーキテクチャ　レイヤーアーキテクチャ
 - API　Rest API
-- クエリ管理　jooq
+- クエリビルダー　jooq
 
  **データベース**
  - RDB　PostgreSQL

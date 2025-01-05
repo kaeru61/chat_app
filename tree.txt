@@ -1,0 +1,80 @@
+.
+├── HELP.md
+├── README.md
+├── application.yml
+├── build.gradle
+├── database
+│   ├── Dockerfile
+│   ├── docker-compose.yml
+│   └── init.sql
+├── gradle
+│   └── wrapper
+│       ├── gradle-wrapper.jar
+│       └── gradle-wrapper.properties
+├── gradlew
+├── gradlew.bat
+├── settings.gradle
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   └── com
+│   │   │       └── chatapp
+│   │   │           ├── internal
+│   │   │           │   ├── RealtimechetApplication.java
+│   │   │           │   ├── adapter
+│   │   │           │   │   ├── ChatRoomRepository.java
+│   │   │           │   │   ├── MessageRepository.java
+│   │   │           │   │   ├── UserRepository.java
+│   │   │           │   │   └── adapterImpl
+│   │   │           │   │       ├── ChatRoomDBAdapterImpl.java
+│   │   │           │   │       ├── MessageDBAdapterImpl.java
+│   │   │           │   │       └── UserDBAdapterImpl.java
+│   │   │           │   ├── application
+│   │   │           │   │   ├── ChatRoomApplication.java
+│   │   │           │   │   ├── MessageApplication.java
+│   │   │           │   │   ├── UserApplication.java
+│   │   │           │   │   └── applicationImpl
+│   │   │           │   │       ├── ChatRoomApplicationImpl.java
+│   │   │           │   │       ├── MessageApplicationImpl.java
+│   │   │           │   │       └── UserAppliationImpl.java
+│   │   │           │   ├── controller
+│   │   │           │   │   ├── ChatRoomController.java
+│   │   │           │   │   ├── ChatRoomUsersController.java
+│   │   │           │   │   ├── MessageController.java
+│   │   │           │   │   └── UserController.java
+│   │   │           │   └── domain
+│   │   │           │       ├── ChatRoomModel.java
+│   │   │           │       ├── MessageModel.java
+│   │   │           │       └── UserModel.java
+│   │   │           └── jooq
+│   │   │               └── com
+│   │   │                   └── chatapp
+│   │   │                       └── jooq
+│   │   │                           ├── DefaultCatalog.java
+│   │   │                           ├── Keys.java
+│   │   │                           ├── Public.java
+│   │   │                           ├── Tables.java
+│   │   │                           └── tables
+│   │   │                               ├── ChatRoomUsers.java
+│   │   │                               ├── ChatRooms.java
+│   │   │                               ├── Messages.java
+│   │   │                               ├── Users.java
+│   │   │                               └── records
+│   │   │                                   ├── ChatRoomUsersRecord.java
+│   │   │                                   ├── ChatRoomsRecord.java
+│   │   │                                   ├── MessagesRecord.java
+│   │   │                                   └── UsersRecord.java
+│   │   └── resources
+│   │       └── application.properties
+│   └── test
+│       ├── java
+│       │   └── com
+│       │       └── chatapp
+│       │           └── internal
+│       │               └── RealtimechetApplicationTests.java
+│       └── resources
+│           └── application-test.properties
+├── tool
+└── tree.txt
+
+30 directories, 48 files

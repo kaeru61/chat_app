@@ -1,17 +1,19 @@
-package main.java.com.chatapp.internal.adapter.adapterImpl;
+package com.chatapp.internal.adapter.adapterImpl;
 
 import com.chatapp.jooq.tables.ChatRooms;
 import com.chatapp.jooq.tables.ChatRoomUsers;
 import com.chatapp.jooq.tables.records.ChatRoomsRecord;
-import main.java.com.chatapp.internal.domain.ChatRoomModel;
-import main.java.com.chatapp.internal.domain.UserModel;
-import main.java.com.chatapp.internal.domain.MessageModel;
-import main.java.com.chatapp.internal.adapter.ChatRoomRepository;
+import com.chatapp.internal.domain.ChatRoomModel;
+import com.chatapp.internal.domain.UserModel;
+import com.chatapp.internal.domain.MessageModel;
+import com.chatapp.internal.adapter.ChatRoomRepository;
 import org.springframework.stereotype.Repository;
 import org.jooq.DSLContext;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import org.jooq.Record5;
+import java.time.LocalDateTime;
 
 @Repository
 public class ChatRoomDBAdapterImpl implements ChatRoomRepository {
@@ -55,6 +57,7 @@ public class ChatRoomDBAdapterImpl implements ChatRoomRepository {
     public ArrayList<ChatRoomModel> getChatRooms() {
         ArrayList<ChatRoomModel> chatRooms = new ArrayList<>();
         dsl.selectFrom(CHAT_ROOMS)
+                .where(CHAT_ROOMS.IS_PRIVATE.eq(false))
                 .fetch()
                 .forEach(record -> chatRooms.add(mapToUserModel(record)));
         return chatRooms;
@@ -73,6 +76,30 @@ public class ChatRoomDBAdapterImpl implements ChatRoomRepository {
                 .and(ChatRoomUsers.USER_ID.eq(UUID.fromString(userID)))
                 .fetchOne() != null;
         return isMember;
+    }
+
+    public ArrayList<ChatRoomModel> getChatRoomsByUser(String userID) {
+        ArrayList<ChatRoomModel> chatRooms = new ArrayList<>();
+        dsl.select(CHAT_ROOMS.ID, CHAT_ROOMS.NAME, CHAT_ROOMS.CREATED_AT, CHAT_ROOMS.IS_PRIVATE, CHAT_ROOMS.PASSWORD)
+                .from(CHAT_ROOMS)
+                .join(ChatRoomUsers.CHAT_ROOM_USERS)
+                .on(CHAT_ROOMS.ID.eq(ChatRoomUsers.CHAT_ROOM_ID))
+                .where(ChatRoomUsers.USER_ID.eq(UUID.fromString(userID)))
+                .fetch()
+                .forEach(record -> chatRooms.add(mapToUserModelFromRecord5(record)));
+        return chatRooms;
+    }
+
+    private ChatRoomModel mapToUserModelFromRecord5(Record5<Integer, String, LocalDateTime, Boolean, String> record) {
+        return new ChatRoomModel(
+                record.value1(), // ID
+                new ArrayList<UserModel>(),
+                new ArrayList<MessageModel>(),
+                record.value3().toString(), // CREATED_AT
+                record.value2(), // NAME
+                record.value4(), // IS_PRIVATE
+                record.value5()  // PASSWORD
+        );
     }
 
     private ChatRoomModel mapToUserModel(ChatRoomsRecord record) {

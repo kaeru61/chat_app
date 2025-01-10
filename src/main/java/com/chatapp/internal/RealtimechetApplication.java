@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = "main.java.com.chatapp")
+@ComponentScan(basePackages = "com.chatapp.internal")
 public class RealtimechetApplication {
 
     public static void main(String[] args) {

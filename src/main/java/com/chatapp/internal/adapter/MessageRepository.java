@@ -1,7 +1,7 @@
-package main.java.com.chatapp.internal.adapter;
+package com.chatapp.internal.adapter;
 
-import main.java.com.chatapp.internal.domain.MessageModel;
-import main.java.com.chatapp.internal.domain.ChatRoomModel;
+import com.chatapp.internal.domain.MessageModel;
+import com.chatapp.internal.domain.ChatRoomModel;
 import java.util.ArrayList;
 
 public interface MessageRepository {

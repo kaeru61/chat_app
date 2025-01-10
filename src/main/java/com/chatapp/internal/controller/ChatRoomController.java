@@ -1,7 +1,7 @@
-package main.java.com.chatapp.internal.controller;
+package com.chatapp.internal.controller;
 
-import main.java.com.chatapp.internal.domain.ChatRoomModel;
-import main.java.com.chatapp.internal.application.ChatRoomApplication;
+import com.chatapp.internal.domain.ChatRoomModel;
+import com.chatapp.internal.application.ChatRoomApplication;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -21,6 +21,16 @@ public class ChatRoomController {
     @GetMapping("/{id}")
     public ResponseEntity<ChatRoomModel> getChatRoomById(@PathVariable int id) {
         return ResponseEntity.ok(chatRoomApplication.getChatRoom(id));
+    }
+
+    @GetMapping("/user/{userID}")
+    public ResponseEntity<List<ChatRoomModel>> getChatRoomsByUser(@PathVariable String userID) {
+        return ResponseEntity.ok(chatRoomApplication.getChatRoomsByUser(userID));
+    }
+
+    @GetMapping("/ismember/{chatRoomID}/{userID}")
+    public ResponseEntity<Boolean> isMember(@PathVariable int chatRoomID, @PathVariable String userID) {
+        return ResponseEntity.ok(chatRoomApplication.isMember(chatRoomID, userID));
     }
 
     @PostMapping("")

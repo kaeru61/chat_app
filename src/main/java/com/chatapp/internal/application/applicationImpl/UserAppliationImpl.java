@@ -1,11 +1,11 @@
-package main.java.com.chatapp.internal.application.applicationImpl;
+package com.chatapp.internal.application.applicationImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import main.java.com.chatapp.internal.application.UserApplication;
-import main.java.com.chatapp.internal.domain.*;
-import main.java.com.chatapp.internal.adapter.UserRepository;
+import com.chatapp.internal.application.UserApplication;
+import com.chatapp.internal.domain.*;
+import com.chatapp.internal.adapter.UserRepository;
 
 @Service
 public class UserAppliationImpl implements UserApplication  {

@@ -1,7 +1,7 @@
-package main.java.com.chatapp.internal.controller;
+package com.chatapp.internal.controller;
 
-import main.java.com.chatapp.internal.domain.ChatRoomModel;
-import main.java.com.chatapp.internal.application.ChatRoomApplication;
+import com.chatapp.internal.domain.ChatRoomModel;
+import com.chatapp.internal.application.ChatRoomApplication;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;

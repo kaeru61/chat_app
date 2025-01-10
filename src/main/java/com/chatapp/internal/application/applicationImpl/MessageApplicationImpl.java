@@ -1,11 +1,12 @@
-package main.java.com.chatapp.internal.application;
+package com.chatapp.internal.application.applicationImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import main.java.com.chatapp.internal.adapter.ChatRoomRepository;
-import main.java.com.chatapp.internal.adapter.MessageRepository;
-import main.java.com.chatapp.internal.domain.MessageModel;
+import com.chatapp.internal.adapter.ChatRoomRepository;
+import com.chatapp.internal.adapter.MessageRepository;
+import com.chatapp.internal.domain.MessageModel;
+import com.chatapp.internal.application.MessageApplication;
 import java.util.ArrayList;
 
 @Service

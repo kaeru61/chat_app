@@ -1,8 +1,8 @@
-package main.java.com.chatapp.internal.application;
+package com.chatapp.internal.application;
 
 import org.springframework.stereotype.Service;
 
-import main.java.com.chatapp.internal.domain.UserModel;
+import com.chatapp.internal.domain.UserModel;
 
 @Service
 public interface UserApplication {

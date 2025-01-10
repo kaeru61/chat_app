@@ -1,4 +1,4 @@
-package main.java.com.chatapp.internal.domain;
+package com.chatapp.internal.domain;
 
 import java.util.UUID;
 

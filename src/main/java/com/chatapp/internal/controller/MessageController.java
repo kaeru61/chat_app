@@ -1,7 +1,7 @@
-package main.java.com.chatapp.internal.controller;
+package com.chatapp.internal.controller;
 
-import main.java.com.chatapp.internal.application.MessageApplication;
-import main.java.com.chatapp.internal.domain.MessageModel;
+import com.chatapp.internal.application.MessageApplication;
+import com.chatapp.internal.domain.MessageModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

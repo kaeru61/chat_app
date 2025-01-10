@@ -1,8 +1,8 @@
-package main.java.com.chatapp.internal.domain;
+package com.chatapp.internal.domain;
 
 import java.util.UUID;
 import java.util.List;
-import main.java.com.chatapp.internal.domain.UserModel;
+import com.chatapp.internal.domain.UserModel;
 
 public class ChatRoomModel {
     private int chatID;

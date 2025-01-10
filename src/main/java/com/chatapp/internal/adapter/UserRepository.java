@@ -1,6 +1,6 @@
-package main.java.com.chatapp.internal.adapter;
+package com.chatapp.internal.adapter;
 
-import main.java.com.chatapp.internal.domain.UserModel;
+import com.chatapp.internal.domain.UserModel;
 
 public interface UserRepository {
     UserModel login(String email, String password);

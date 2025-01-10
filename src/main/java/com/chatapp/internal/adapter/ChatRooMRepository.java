@@ -1,6 +1,6 @@
-package main.java.com.chatapp.internal.adapter;
+package com.chatapp.internal.adapter;
 
-import main.java.com.chatapp.internal.domain.ChatRoomModel;
+import com.chatapp.internal.domain.ChatRoomModel;
 import java.util.ArrayList;
 
 public interface ChatRoomRepository {
@@ -9,5 +9,6 @@ public interface ChatRoomRepository {
     public ArrayList<ChatRoomModel> getChatRooms();
     public void joinChatRoom(int chatRoomID, String userID);
     public Boolean isMember(int chatRoomID, String userID);
+    public ArrayList<ChatRoomModel> getChatRoomsByUser(String userID);
 }
 

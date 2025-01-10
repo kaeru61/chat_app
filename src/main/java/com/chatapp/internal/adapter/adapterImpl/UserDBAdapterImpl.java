@@ -1,4 +1,4 @@
-package main.java.com.chatapp.internal.adapter.adapterImpl;
+package com.chatapp.internal.adapter.adapterImpl;
 
 import com.chatapp.jooq.tables.Users;
 import com.chatapp.jooq.tables.records.UsersRecord;
@@ -6,8 +6,8 @@ import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
-import main.java.com.chatapp.internal.adapter.UserRepository;
-import main.java.com.chatapp.internal.domain.UserModel;
+import com.chatapp.internal.adapter.UserRepository;
+import com.chatapp.internal.domain.UserModel;
 
 @Repository
 public class UserDBAdapterImpl implements UserRepository {
@@ -23,6 +23,9 @@ public class UserDBAdapterImpl implements UserRepository {
                 .where(USERS.EMAIL.eq(email))
                 .and(USERS.PASSWORD.eq(password))
                 .fetchOne();
+        if (record == null) {
+            return null;
+        }
         return record != null ? mapToUserModel(record) : null;
     }
 

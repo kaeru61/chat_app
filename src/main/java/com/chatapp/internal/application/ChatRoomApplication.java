@@ -1,6 +1,6 @@
-package main.java.com.chatapp.internal.application;
+package com.chatapp.internal.application;
 
-import main.java.com.chatapp.internal.domain.ChatRoomModel;
+import com.chatapp.internal.domain.ChatRoomModel;
 import java.util.ArrayList;
 
 public interface ChatRoomApplication {
@@ -12,4 +12,5 @@ public interface ChatRoomApplication {
     void deleteChatRoom(Long id);
     void joinChatRoom(int chatRoomID, String userID);
     void leaveChatRoom(int chatRoomID, String userID);
+    Boolean isMember(int chatRoomID, String userID);
 }

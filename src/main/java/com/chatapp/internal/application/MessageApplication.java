@@ -1,6 +1,6 @@
-package main.java.com.chatapp.internal.application;
+package com.chatapp.internal.application;
 
-import main.java.com.chatapp.internal.domain.MessageModel;
+import com.chatapp.internal.domain.MessageModel;
 import java.util.ArrayList;
 
 public interface MessageApplication {

@@ -1,8 +1,9 @@
 
-package main.java.com.chatapp.internal.application;
+package com.chatapp.internal.application.applicationImpl;
 
-import main.java.com.chatapp.internal.domain.ChatRoomModel;
-import main.java.com.chatapp.internal.adapter.ChatRoomRepository;
+import com.chatapp.internal.domain.ChatRoomModel;
+import com.chatapp.internal.adapter.ChatRoomRepository;
+import com.chatapp.internal.application.ChatRoomApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
@@ -21,8 +22,7 @@ public class ChatRoomApplicationImpl implements ChatRoomApplication {
     }
 
     public ArrayList<ChatRoomModel> getChatRoomsByUser(String userID) {
-        // TODO: 実装が必要
-        return new ArrayList<>();
+        return chatRoomRepository.getChatRoomsByUser(userID);
     }
 
     public ChatRoomModel createChatRoom(ChatRoomModel chatRoom) {
@@ -39,10 +39,14 @@ public class ChatRoomApplicationImpl implements ChatRoomApplication {
 
     public void joinChatRoom(int chatRoomID, String userID) {
         Boolean isMember = chatRoomRepository.isMember(chatRoomID, userID);
-        if (!isMember) {
-            throw new RuntimeException("You are not a member of this chat room.");
+        if (isMember) {
+            throw new RuntimeException("You are a member of this chat room.");
         }
         chatRoomRepository.joinChatRoom(chatRoomID, userID);
+    }
+
+    public Boolean isMember(int chatRoomID, String userID) {
+        return chatRoomRepository.isMember(chatRoomID, userID);
     }
 
     public void leaveChatRoom(int chatRoomID, String userID) {

@@ -1,10 +1,10 @@
 
-package main.java.com.chatapp.internal.adapter.adapterImpl;
+package com.chatapp.internal.adapter.adapterImpl;
 
 import com.chatapp.jooq.tables.Messages;
 import com.chatapp.jooq.tables.records.MessagesRecord;
-import main.java.com.chatapp.internal.adapter.MessageRepository;
-import main.java.com.chatapp.internal.domain.MessageModel;
+import com.chatapp.internal.adapter.MessageRepository;
+import com.chatapp.internal.domain.MessageModel;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
 
